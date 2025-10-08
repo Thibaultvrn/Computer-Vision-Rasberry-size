@@ -67,5 +67,49 @@ Data is exchanged through the **serial interface** (`PySerial`).
 
 #### 1. Clone the repository
 ```bash
-git clone https://github.com/<your_username>/Computer-Vision-Raspberry
-cd Computer-Vision-Raspberry
+git clone https://github.com/Thibaultvrn/Computer-Vision-Rasberry-size
+cd Computer-Vision-Rasberry-size
+```
+
+#### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+This will install:
+- **opencv-python** – Computer vision library
+- **numpy** – Numerical computing
+- **pyserial** – Arduino communication
+
+#### 3. Run the detection program
+```bash
+python raspberry_detector.py raspberry.jpg --scale 0.5
+```
+
+Arguments:
+- `image_path` – Path to the raspberry image
+- `--scale` – Scale factor in mm/pixel (default: 0.5)
+- `--no-display` – Run without GUI (batch mode)
+
+For detailed installation instructions, see [INSTALL.md](INSTALL.md).
+
+---
+
+### 📁 Project Structure
+
+```
+Computer-Vision-Rasberry-size/
+├── raspberry_detector.py    # Main Python detection program
+├── Algorith.C               # Alternative C implementation (requires OpenCV C API)
+├── requirements.txt         # Python dependencies
+├── INSTALL.md              # Detailed installation guide
+├── README.md               # This file
+├── LICENSE                 # Project license
+└── docs/                   # Course documentation
+```
+
+---
+
+### 🎓 Course Documentation
+
+This project is developed as part of EPFL's ME-320 course. Lecture materials are available in the `docs/` folder

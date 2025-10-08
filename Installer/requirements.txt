@@ -1,0 +1,6 @@
+# Dépendances Python pour le projet Computer Vision Raspberry
+# Installation: pip install -r requirements.txt
+
+opencv-python>=4.8.0
+numpy>=1.24.0
+pyserial>=3.5  # Pour communication avec Arduino
