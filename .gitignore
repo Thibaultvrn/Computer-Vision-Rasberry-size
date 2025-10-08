@@ -5,6 +5,10 @@
 *.out
 algorith
 algorith.exe
+Algorith.exe
+
+# Fichiers temporaires de compilation
+temp_*.bat
 
 # Fichiers OpenCV temporaires
 *.xml
