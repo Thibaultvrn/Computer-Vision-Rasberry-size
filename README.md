@@ -27,18 +27,16 @@ The system is divided into two main parts:
 | Component | Role | Language |
 |------------|------|-----------|
 | **Arduino (C++)** | Controls actuators and sensors of the gripper | C / C++ |
-| **Computer Vision (Python)** | Detects fruit ripeness and size using OpenCV | Python 3 |
+| **Computer Vision (C)** | Detects fruit ripeness and size using OpenCV C API | C |
 
-Data is exchanged through the **serial interface** (`PySerial`).
+Communication between modules via **serial interface**.
 
 ---
 
 ### ⚙️ Technologies Used
-- **Python 3**
-- **OpenCV** – Image capture & color segmentation
-- **NumPy** – Matrix operations
-- **PySerial** – Communication with Arduino
-- **Arduino C/C++** – For actuator control
+- **C Programming Language**
+- **OpenCV C API** – Image capture & color segmentation
+- **Arduino C/C++** – For actuator control and serial communication
 
 ---
 
@@ -71,27 +69,51 @@ git clone https://github.com/Thibaultvrn/Computer-Vision-Rasberry-size
 cd Computer-Vision-Rasberry-size
 ```
 
-#### 2. Install dependencies
-```bash
-pip install -r requirements.txt
+#### 2. Install OpenCV for C/C++
+
+Follow the detailed guide in [INSTALL_OPENCV_C.md](INSTALL_OPENCV_C.md).
+
+**Quick options:**
+- **Windows (binaries)**: Download from https://opencv.org/releases/ and configure environment variables (~15 min)
+- **Windows (WSL/Linux)**: `sudo apt install libopencv-dev` (~5 min, recommended)
+- **Linux**: `sudo apt install libopencv-dev`
+
+#### 3. Compile the program
+
+**On Windows with Visual Studio:**
+```cmd
+build.bat
 ```
 
-This will install:
-- **opencv-python** – Computer vision library
-- **numpy** – Numerical computing
-- **pyserial** – Arduino communication
-
-#### 3. Run the detection program
+**On WSL/Linux:**
 ```bash
-python raspberry_detector.py raspberry.jpg --scale 0.5
+make
+```
+
+**Manual compilation (Windows):**
+```cmd
+cl /I"C:\opencv\build\include" Algorith.C /link /LIBPATH:"C:\opencv\build\x64\vc16\lib" opencv_world481.lib
+```
+
+**Manual compilation (Linux/WSL):**
+```bash
+gcc Algorith.C -o algorith `pkg-config --cflags --libs opencv4`
+```
+
+#### 4. Run the detection program
+
+```bash
+./algorith raspberry.jpg 0.5
 ```
 
 Arguments:
 - `image_path` – Path to the raspberry image
-- `--scale` – Scale factor in mm/pixel (default: 0.5)
-- `--no-display` – Run without GUI (batch mode)
+- `scale_mm_per_pixel` – Scale factor for converting pixels to millimeters (default: 0.5)
 
-For detailed installation instructions, see [INSTALL.md](INSTALL.md).
+The program will:
+- Display detection results in console (RIPE/UNRIPE, size, confidence scores)
+- Show the image with detected contours and bounding boxes
+- Press any key to close the windows
 
 ---
 
@@ -99,13 +121,13 @@ For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
 ```
 Computer-Vision-Rasberry-size/
-├── raspberry_detector.py    # Main Python detection program
-├── Algorith.C               # Alternative C implementation (requires OpenCV C API)
-├── requirements.txt         # Python dependencies
-├── INSTALL.md              # Detailed installation guide
-├── README.md               # This file
-├── LICENSE                 # Project license
-└── docs/                   # Course documentation
+├── Algorith.C               # Main C program - raspberry detection with OpenCV C API
+├── build.bat                # Windows compilation script (Visual Studio)
+├── Makefile                 # Linux/WSL compilation script
+├── INSTALL_OPENCV_C.md      # Detailed OpenCV installation guide for C/C++
+├── README.md                # This file
+├── LICENSE                  # Project license
+└── docs/                    # Course documentation (ME-320 EPFL)
 ```
 
 ---

@@ -1,0 +1,41 @@
+# Fichiers compilés
+*.exe
+*.o
+*.obj
+*.out
+algorith
+algorith.exe
+
+# Fichiers OpenCV temporaires
+*.xml
+
+# Fichiers Visual Studio
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+Debug/
+Release/
+x64/
+x86/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Fichiers de configuration locaux
+camera_config.txt
+
+# Dossier clone récursif
+Computer-Vision-Rasberry-size/
+
+# Images de test (optionnel - décommenter si vous ne voulez pas pousser les images)
+# *.jpg
+# *.png
+# *.bmp
